@@ -1,22 +1,42 @@
 import "./Card.css";
 import Button from "../Button/Button.js";
+import { useState } from "react";
 
-export default function Card() {
+const initialState = true;
+
+// function ActiveToggle() {
+//   const [state, setState] = useState(initialState);
+//   return (
+//     <main>
+//       <div className={state ? "card__answer" : "card__answer--active"} />
+//       <button
+//         type="button"
+//         onClick={() => {
+//           setState((currentState) => {
+//             const newState = !currentState;
+//             return newState;
+//           });
+//         }}
+//       >
+//         Activate
+//       </button>
+//     </main>
+//   );
+// }
+
+export default function Card({ question, answer, tag_1, tag_2, tag_3 }) {
+  const [state, setState] = useState(initialState);
   return (
     <li className="card-list__item">
       <article className="card" data-js="card">
-        <h2 className="card__question">
-          In the Kingdom Heart series who provides the english voice for Master
-          Eraqus?
-        </h2>
+        <h2 className="card__question">{question}</h2>
         <Button />
-        <p className="card__answer" data-js="card__answer">
-          Mark Hamill
-        </p>
+
+        <p data-js="card__answer">{answer}</p>
         <ul className="card__tag-list" data-js="card__tag-list">
-          <li className="card__tag-list-item">#kingdomheart</li>
-          <li className="card__tag-list-item">#mastereraqus</li>
-          <li className="card__tag-list-item">#english voices</li>
+          <li className="card__tag-list-item">{tag_1}</li>
+          <li className="card__tag-list-item">{tag_2}</li>
+          <li className="card__tag-list-item">{tag_3}</li>
         </ul>
         <div className="card__button-bookmark">
           <button

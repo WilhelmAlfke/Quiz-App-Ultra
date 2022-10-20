@@ -40,12 +40,6 @@ body {
   color: var(--black);
 }
 
-button {
-  font-size: var(--fs-400);
-  font-family: var(--ff-primary);
-  color: var(--black);
-}
-
 ul,
 ol {
   list-style: none;

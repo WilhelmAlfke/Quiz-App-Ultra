@@ -9,11 +9,6 @@
   margin: 0 0 2rem;
 }
 
-.card__button-answer:hover {
-  opacity: 0.75;
-  cursor: pointer;
-}
-
 .card__answer {
   margin: 0 2rem;
   font-style: italic;
