@@ -1,30 +1,49 @@
-import Card from "./Card/Card.js";
 import Navigation from "./Navbar/Navbar.js";
 import Header from "./Header/Header.js";
+import { useState } from "react";
+import Home from "./pages/Home.js";
+import Bookmarks from "./pages/Bookmarks.js";
+import About from "./pages/About.js";
+import AddCard from "./pages/AddCard.js";
+
+const cards = [
+  {
+    id: 1,
+    question: "frage1",
+    answer: "antwort1",
+    tag: ["erster", "zweiter", "dritter"],
+    isBookmarked: true,
+  },
+  {
+    id: 2,
+    question: "frage2",
+    answer: "antwort2",
+    tag: ["erster", "zweiter", "dritter"],
+    isBookmarked: false,
+  },
+  {
+    id: 3,
+    question: "frage3",
+    answer: "antwort3",
+    tag: ["erster", "zweiter", "dritter"],
+    isBookmarked: false,
+  },
+];
 
 function App() {
+  const [currentPage, navigateTo] = useState("home");
+
   return (
     <div className="App">
       <Header />
+      <main className="card-list">
+        {currentPage === "home" && <Home cardArray={cards} />}
+        {currentPage === "bookmark" && <Bookmarks cardArray={cards} />}
 
-      <ul className="card-list">
-        <Card
-          question="In the Kingdom Heart series who provides the english voice for Master Eraqus?"
-          answer="HUHU"
-          tag_1="WIWI"
-          tag_2="WAW"
-          tag_3="WOW"
-        />
-        <Card
-          question="Lorem didorium?"
-          answer="HAHAH"
-          tag_1="WAMBA"
-          tag_2="MUMPS"
-          tag_3="MASERN"
-        />
-      </ul>
-
-      <Navigation />
+        {currentPage === "add__card" && <AddCard />}
+        {currentPage === "about" && <About />}
+      </main>
+      <Navigation page={currentPage} setPage={navigateTo} />
     </div>
   );
 }

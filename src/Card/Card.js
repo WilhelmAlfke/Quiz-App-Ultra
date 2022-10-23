@@ -1,42 +1,19 @@
 import "./Card.css";
 import Button from "../Button/Button.js";
-import { useState } from "react";
 
-const initialState = true;
-
-// function ActiveToggle() {
-//   const [state, setState] = useState(initialState);
-//   return (
-//     <main>
-//       <div className={state ? "card__answer" : "card__answer--active"} />
-//       <button
-//         type="button"
-//         onClick={() => {
-//           setState((currentState) => {
-//             const newState = !currentState;
-//             return newState;
-//           });
-//         }}
-//       >
-//         Activate
-//       </button>
-//     </main>
-//   );
-// }
-
-export default function Card({ question, answer, tag_1, tag_2, tag_3 }) {
-  const [state, setState] = useState(initialState);
+export default function Card({ id, question, answer, tags, isBookmarked }) {
   return (
     <li className="card-list__item">
       <article className="card" data-js="card">
         <h2 className="card__question">{question}</h2>
-        <Button />
+        <Button answer={answer} />
 
-        <p data-js="card__answer">{answer}</p>
         <ul className="card__tag-list" data-js="card__tag-list">
-          <li className="card__tag-list-item">{tag_1}</li>
-          <li className="card__tag-list-item">{tag_2}</li>
-          <li className="card__tag-list-item">{tag_3}</li>
+          {tags.map((tagNumber) => (
+            <li key={tagNumber} className="card__tag-list-item">
+              {tagNumber}
+            </li>
+          ))}
         </ul>
         <div className="card__button-bookmark">
           <button
