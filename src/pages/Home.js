@@ -1,14 +1,15 @@
 import Card from "../Card/Card.js";
 
-export default function Home({ cards }) {
+export default function Home({ cardArray }) {
+  console.log(cardArray);
   return (
     <ul>
-      {cards.map((card) => (
+      {cardArray.map((card) => (
         <Card
           key={card.id}
           question={card.question}
           answer={card.answer}
-          tags={card.tags}
+          tags={card.tag}
           isBookmarked={card.isBookmarked}
         />
       ))}

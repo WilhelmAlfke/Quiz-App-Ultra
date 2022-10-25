@@ -6,7 +6,7 @@ import Bookmarks from "./pages/Bookmarks.js";
 import About from "./pages/About.js";
 import AddCard from "./pages/AddCard.js";
 
-const cards = [
+const cardArray = [
   {
     id: 1,
     question: "frage1",
@@ -32,6 +32,17 @@ const cards = [
 
 function App() {
   const [currentPage, navigateTo] = useState("home");
+  const [cards, setCards] = useState(cardArray);
+
+  function appendCard(question, answer, tags) {
+    setCards((alterWert) => {
+      const neuerWert = [
+        ...alterWert,
+        { question, answer, tag: [tags], isBookmarked: true, id: 3424 },
+      ];
+      return neuerWert;
+    });
+  }
 
   return (
     <div className="App">
@@ -40,7 +51,9 @@ function App() {
         {currentPage === "home" && <Home cardArray={cards} />}
         {currentPage === "bookmark" && <Bookmarks cardArray={cards} />}
 
-        {currentPage === "add__card" && <AddCard />}
+        {currentPage === "add__card" && (
+          <AddCard appendCards={appendCard} setPage={navigateTo} />
+        )}
         {currentPage === "about" && <About />}
       </main>
       <Navigation page={currentPage} setPage={navigateTo} />

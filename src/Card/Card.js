@@ -2,6 +2,7 @@ import "./Card.css";
 import Button from "../Button/Button.js";
 
 export default function Card({ id, question, answer, tags, isBookmarked }) {
+  console.log(tags);
   return (
     <li className="card-list__item">
       <article className="card" data-js="card">
@@ -18,7 +19,11 @@ export default function Card({ id, question, answer, tags, isBookmarked }) {
         <div className="card__button-bookmark">
           <button
             data-js="button__bookmark"
-            className="bookmark"
+            className={
+              isBookmarked
+                ? "bookmark--active bookmark"
+                : "bookmark:hover bookmark"
+            }
             aria-label="bookmark"
             type="button"
           >
