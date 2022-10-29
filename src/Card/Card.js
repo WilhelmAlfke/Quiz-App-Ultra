@@ -1,8 +1,15 @@
 import "./Card.css";
 import Button from "../Button/Button.js";
 
-export default function Card({ id, question, answer, tags, isBookmarked }) {
-  console.log(tags);
+export default function Card({
+  cardId,
+  question,
+  answer,
+  tags,
+  isBookmarked,
+  toggleBookmark,
+  deleteCard,
+}) {
   return (
     <li className="card-list__item">
       <article className="card" data-js="card">
@@ -26,6 +33,9 @@ export default function Card({ id, question, answer, tags, isBookmarked }) {
             }
             aria-label="bookmark"
             type="button"
+            onClick={() => {
+              toggleBookmark(cardId);
+            }}
           >
             <svg
               className="bookmark__icon"
@@ -36,6 +46,14 @@ export default function Card({ id, question, answer, tags, isBookmarked }) {
             </svg>
           </button>
         </div>
+        <button
+          type="button"
+          onClick={() => {
+            deleteCard(cardId);
+          }}
+        >
+          delete
+        </button>
       </article>
     </li>
   );
