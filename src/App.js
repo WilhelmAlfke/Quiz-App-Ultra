@@ -1,6 +1,6 @@
 import Navigation from "./Navbar/Navbar.js";
 import Header from "./Header/Header.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Home from "./pages/Home.js";
 import Bookmarks from "./pages/Bookmarks.js";
 import About from "./pages/About.js";
@@ -32,7 +32,20 @@ const cardArray = [
 
 function App() {
   const [currentPage, navigateTo] = useState("home");
-  const [cards, setCards] = useState(cardArray);
+  const [cards, setCards] = useState(() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem("gespeicherteCardList") ?? cardArray
+      );
+    } catch (error) {
+      console.warn(error);
+      return cardArray;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("gespeicherteCardList", JSON.stringify(cards));
+  }, [cards]);
 
   function toggleBookmark(cardId) {
     setCards((cards) => {
